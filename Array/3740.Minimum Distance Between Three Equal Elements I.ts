@@ -8,7 +8,7 @@ function minimumDistance(nums: number[]): number {
 
             for (let k = j + 1; k < nums.length; k++) {
                 if (nums[j] == nums[k]) {
-                    res = Math.min(res, j - i + k - j + k - i);
+                    res = Math.min(res, 2 * (k - i)); // j - i + k - j + k - i => can be written like 2(k-i)
                 }
             }
         }
