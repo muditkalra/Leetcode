@@ -1,13 +1,8 @@
-
-
-// core idea: 
-// States are (i,j,cost incured to reach that point)
+// core idea:
+// Shortest Path from single source : minimum cost incured to move from source to destination, can also be solved using dijkstra but 0-1 BFS reduces the time complexity 
+// States are (i,j, cost incured to reach that point)
 // so again revisiting the same cell may get you better results
-// finding the minimum cost using bfs
-
-
-// We could have also used 0-1 BFS technique, where we will use Deque to add 0 and 1 type cells
-
+// finding the minimum cost using Dijkstra or BFS or 0-1BFS
 
 function findSafeWalk(grid: number[][], health: number): boolean {
     let dir = [[0, 1], [1, 0], [0, -1], [-1, 0]];
@@ -46,6 +41,8 @@ function findSafeWalk(grid: number[][], health: number): boolean {
 
 
 //! 0-1 BFS method using Deque;
+// We will use Deque to add 0 and 1 type cells
+
 
 // function findSafeWalk(grid: number[][], health: number): boolean {
 //     let dir = [[0, 1], [1, 0], [0, -1], [-1, 0]];
