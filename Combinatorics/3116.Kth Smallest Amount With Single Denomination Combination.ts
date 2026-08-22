@@ -10,9 +10,26 @@
 // let's say take number 20, at this we have k =13, which is more than 8, we need to reduce number
 // by this we can understand that this is becoming monotonic as the number get bigger, k becomes bigger too. 
 // so need to implement binary search on the number and somehow calculate count of amount equal to k
-// if less than k we move go for bigger number\
+// if less than k we move go for bigger number
 // else we go for smaller number
 
+// Now to we will calculate how many count of amount will be there 
+// we need to see that for any number x we will require x divide by coin-a  + x divide by coin-b - common part of a and b
+// let understand this using an example coins: [2,3]
+// for coin 2: [2,4,6,8,10,12,14]
+// for coin 3: [3,6,9,12,15,18]
+// now lets say is 10, then how many amount will be there : [2,3,4,6,8,9,10]  total 7 will be there
+// if we calculate (10/2 = 5)  +  (10/3 = 3)  = 8 , becuase we have 6 twice so we need to reduce the coin part
+// There comes the principle of inclusion and exclusion 
+// formula goes like |A U B | =  |A| + |B| - |A n B | 
+// general formula will be  = single - doubles + triples .. 
+
+// so our final formula will become  == x/a b+ x/b + x/c - x/(a n b) - x/(a n c) - x/(b n c ) + x/(a n b n c)
+
+// formula 
+// GCD x LCM = a x b 
+// from here we can calculate lcm as well
+ 
 function findKthSmallest(coins: number[], k: number): number {
     let n = coins.length;
     let low = 1n;
