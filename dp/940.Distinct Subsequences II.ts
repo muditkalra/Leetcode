@@ -14,15 +14,49 @@
 
 
 function distinctSubseqII(s: string): number {
-    const MOD = 10 ** 9 + 7;
-    let end = new Array(26).fill(0);
-    let total = 0;
+    // const MOD = 10 ** 9 + 7;
+    // let n = s.length;
+    // let end = new Array(26).fill(0);
+    // let total = 0;
 
-    for (let c of s) {
-        let idx = c.charCodeAt(0) - 97;
-        let newSq = (total + 1 - end[idx] + MOD) % MOD; // new sequences that can be created using all the previous seq
-        total = (total + newSq) % MOD;
-        end[idx] = (end[idx] + newSq) % MOD;
+    // for (let c of s) {
+    //     let idx = c.charCodeAt(0) - 97;
+    //     let newSq = (total + 1 - end[idx] + MOD) % MOD; // new sequences that can be created using all the previous seq
+    //     total = (total + newSq) % MOD;
+    //     end[idx] = (end[idx] + newSq) % MOD;
+    // }
+    // return total;
+
+    const M = 10 ** 9 + 7;
+    let len = s.length;
+    let dp = new Array(len + 1).fill(-1);
+
+    let lastSeen = new Array(26).fill(0);
+    let prev = new Array(len + 1).fill(0);
+
+    for (let i = 1; i <= len; i++) {
+        let idx = s.charCodeAt(i - 1) - 97;
+        prev[i] = lastSeen[idx];
+        lastSeen[idx] = i;
     }
-    return total;
-};
+
+
+    function solve(n: number): number {
+        if (n == 0) {
+            return 1;
+        }
+
+        if (dp[n] !== -1) {
+            return dp[n];
+        }
+
+        let total = (2 * solve(n - 1) + M) % M;
+        if (prev[n] !== 0) {
+            let duplicates = solve(prev[n] - 1);
+            total = (total - duplicates + M) % M;
+        }
+        dp[n] = total;
+        return total;
+    }
+    return (solve(len) - 1 + M) % M;
+};  
