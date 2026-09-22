@@ -1,3 +1,6 @@
+// Idea is we need to calculate subarray whose product 
+
+
 function resultArray(nums: number[], k: number): number[] {
     let n = nums.length;
 
