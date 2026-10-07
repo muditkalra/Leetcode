@@ -77,7 +77,7 @@ function findSafeWalk(grid: number[][], health: number): boolean {
 
 //             if (cost < visited[newX][newY]) {
 //                 visited[newX][newY] = cost;
-//                 if (visited[newX][newY] == 1) {
+//                 if (grid[newX][newY] == 1) {
 //                     q.pushBack([newX, newY]);
 //                 } else {
 //                     q.pushFront([newX, newY]);
